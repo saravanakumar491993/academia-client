@@ -2,23 +2,29 @@
 
 <h3>Accent Color</h3>
 <div class="content">
-  <button class="theme-button" mat-fab style="background-color: blue" (click)="setAccent('blue')"></button>
-  <button class="theme-button" mat-fab style="background-color: green" (click)="setAccent('green')"></button>
+  <button *ngFor="let accentColor of settingService.accentColors" class="theme-button" mat-fab [style.background-color]="accentColor"  (click)="setAccent(accentColor)">
+    <mat-icon *ngIf="accentColor == settingService.currentAccent">done</mat-icon>
+  </button>
+  <!-- <button class="theme-button" mat-fab style="background-color: green" (click)="setAccent('green')"></button>
   <button class="theme-button" mat-fab style="background-color: indigo" (click)="setAccent('indigo')"></button>
   <button class="theme-button" mat-fab style="background-color: pink" (click)="setAccent('pink')"></button>
-  <button class="theme-button" mat-fab style="background-color: yellow" (click)="setAccent('yellow')"></button>
+  <button class="theme-button" mat-fab style="background-color: yellow" (click)="setAccent('yellow')"></button> -->
 </div> 
 
 <h3>Theme Color</h3>
 <div class="content">
-  <button class="theme-button" mat-fab style="background-color: black" (click)="setTheme('dark')"></button>
-  <button class="theme-button" mat-fab style="background-color: white" (click)="setTheme('light')"></button>
+  <button class="theme-button" mat-fab style="background-color: black" (click)="setTheme('dark')">
+    <mat-icon *ngIf="settingService.currentTheme=='dark'" style="color: white">done</mat-icon>
+  </button>
+  <button class="theme-button" mat-fab style="background-color: white" (click)="setTheme('light')">
+    <mat-icon *ngIf="settingService.currentTheme=='light'" style="color: black">done</mat-icon>
+  </button>
 </div>
 
 <h3>Font Family</h3>
 <mat-form-field class="content">
-  <mat-select #fontFamily placeholder="Font Family" (change)="setFontFamily(fontFamily.value)">
-    <mat-option *ngFor="let fontFamily of fontFamilies" [value]='fontFamily["Value"]'>
+  <mat-select #fontFamily placeholder="Font Family" (change)="setFontFamily(fontFamily.value)" [value]="settingService.currentFontFamily">
+    <mat-option *ngFor="let fontFamily of settingService.fontFamilies" [value]='fontFamily["Value"]' >
       {{ fontFamily["Key"] }}
     </mat-option>
   </mat-select>

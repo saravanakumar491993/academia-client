@@ -12,6 +12,7 @@ import { UrlConstant } from './constants/url.constants';
 import { ApplicationModule, ApplicationModuleOption } from './model/application-module';
 import { AppConstant } from './constants/app.contants';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { SettingService } from './service/setting.service';
 
 @Component({
   selector: 'app-root',
@@ -28,14 +29,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
   constructor(
+    private settingService: SettingService,
     public authService: AuthService,
     private changeDetectorRef: ChangeDetectorRef,
-    private overlayContainer: OverlayContainer,
     private media: MediaMatcher,
     private router: Router
   ) 
   {
-    this.overlayContainer.getContainerElement().classList.add('indigo-dark-theme');
+    this.settingService.Init();
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);

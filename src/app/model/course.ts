@@ -11,6 +11,4 @@ export class Course{
     updatedTime: Date;
     updatedBy: number;
     updatedUser: User;
-    
-
 }

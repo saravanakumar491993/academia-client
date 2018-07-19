@@ -44,6 +44,9 @@ export class AuthInterceptor implements HttpInterceptor {
                     case 401:
                         this.unAuthorized(req);
                         break;
+                    case 409:
+                        this.conflict(req);
+                        break;
                 }
             }
         });
@@ -65,6 +68,12 @@ export class AuthInterceptor implements HttpInterceptor {
             this.authService.logout();
             this.router.navigate([UrlConstant.LoginPath]);
         }
+    }
+
+    conflict(req: HttpRequest<any>){
+        this.snackBar.open("Data conflict", "Close",  {
+            duration: AppConstant.SnackBarDismissalTime
+          });
     }
 }
 

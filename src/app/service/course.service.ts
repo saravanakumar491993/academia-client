@@ -14,4 +14,13 @@ export class CourseService {
   addCourse (course: Course): Observable<Course> {
     return this.http.post<Course>(API.Courses, course);
   }
+
+  getCourses(page: number = 0, per_page: number = 0): Observable<Course[]>{
+    return this.http.get<Course[]>(`${API.Courses}?page=${page}&per_page=${per_page}`);
+  }
+
+  getCourse(id, includes = null): Observable<Course>{
+    let url = `${API.Courses}/${id}`
+    return  this.http.get<Course>(url);
+  }
 }

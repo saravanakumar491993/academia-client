@@ -18,6 +18,8 @@ import { OptionItemComponent } from './components/option/option-item/option-item
 import { ListCourseComponent } from './components/course/list-course/list-course.component';
 import { CourseFormComponent } from './components/course/course-form/course-form.component';
 import { CourseService } from './service/course.service';
+import { ShowCourseComponent } from './components/course/show-course/show-course.component';
+import { SettingService } from './service/setting.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { CourseService } from './service/course.service';
     OptionItemComponent,
     ListCourseComponent,
     CourseFormComponent,
+    ShowCourseComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,8 @@ import { CourseService } from './service/course.service';
     httpInterceptorProviders,
     AuthService,
     MediaMatcher,
-    CourseService
+    CourseService,
+    SettingService
    ],
     bootstrap: [AppComponent
   ]
