@@ -1,0 +1,32 @@
+@import '~sass/variables';
+
+.outer-container{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    padding: 30px 30px;
+    display: flex;
+    flex: 1;
+    margin: 0px 50px;
+    flex-direction: column;
+    border: 1px solid $light-gray-border;
+    align-items: stretch;
+    justify-content: stretch;
+    box-shadow: 1px 1px 10px 2px #DDDDDD;
+    border-radius: 5px;
+    max-width: 400px;
+}
+
+span {
+    align-self: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+button{
+    margin-top: 10px;
+}

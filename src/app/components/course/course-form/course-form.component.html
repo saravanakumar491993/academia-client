@@ -1,0 +1,8 @@
+<form #courseForm="ngForm" class="container">
+
+  <mat-form-field>
+    <input matInput placeholder="Initial" [(ngModel)]="course.name" name="CourseName">
+  </mat-form-field>
+  
+  <button mat-raised-button [disabled]="!courseForm.form.valid" (click)="addCourse()">Submit</button>
+</form> 

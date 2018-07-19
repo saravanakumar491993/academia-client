@@ -1,0 +1,23 @@
+$pink-theme-primary: mat-palette($mat-pink);
+$pink-theme-accent: mat-palette($mat-pink, A200, A100, A400);
+$pink-theme-warn: mat-palette($mat-deep-orange);
+
+$pink-light-theme: mat-light-theme(
+    $pink-theme-primary,
+    $pink-theme-accent,
+    $pink-theme-warn
+);
+
+$pink-dark-theme: mat-dark-theme(
+    $pink-theme-primary,
+    $pink-theme-accent,
+    $pink-theme-warn
+);
+
+.pink-light-theme {
+    @include angular-material-theme($pink-light-theme);
+}
+
+.pink-dark-theme {
+    @include angular-material-theme($pink-dark-theme);
+}

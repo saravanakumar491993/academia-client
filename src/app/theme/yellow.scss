@@ -1,0 +1,23 @@
+$yellow-theme-primary: mat-palette($mat-yellow);
+$yellow-theme-accent: mat-palette($mat-yellow, A200, A100, A400);
+$yellow-theme-warn: mat-palette($mat-deep-orange);
+
+$yellow-light-theme: mat-light-theme(
+    $yellow-theme-primary,
+    $yellow-theme-accent,
+    $yellow-theme-warn
+);
+
+$yellow-dark-theme: mat-dark-theme(
+    $yellow-theme-primary,
+    $yellow-theme-accent,
+    $yellow-theme-warn
+);
+
+.yellow-light-theme {
+    @include angular-material-theme($yellow-light-theme);
+}
+
+.yellow-dark-theme {
+    @include angular-material-theme($yellow-dark-theme);
+}

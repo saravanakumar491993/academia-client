@@ -1,0 +1,5 @@
+<div *ngIf="appModule">
+  <span matSubheader>{{appModule.name}}</span>
+  <a mat-list-item *ngFor="let option of appModule.options" [routerLink]="[option.location]" (click)="selectOption(option)" >{{option.name}}</a>
+  <mat-divider></mat-divider>
+</div>

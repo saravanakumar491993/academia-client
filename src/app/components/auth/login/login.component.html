@@ -1,0 +1,18 @@
+
+<div class="outer-container">
+  <form #loginForm="ngForm" class="container" (submit)="login()">
+
+    <span>Login</span>
+
+    <mat-form-field>
+      <input matInput placeholder="User Name" [(ngModel)]="user.userName" name="userName" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Password" [(ngModel)]="user.password" name="password" type="password" required>
+    </mat-form-field>
+
+    <button  mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Login</button>
+
+  </form>
+</div>

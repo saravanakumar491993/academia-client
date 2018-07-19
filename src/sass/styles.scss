@@ -1,0 +1,20 @@
+@import './variables';
+@import './mixins';
+
+@import '~@angular/material/theming';
+@include mat-core();
+
+@import '../app/theme/blue.scss';
+@import '../app/theme/green.scss';
+@import '../app/theme/indigo.scss';
+@import '../app/theme/pink.scss';
+@import '../app/theme/yellow.scss';
+@import '../app/typography/arial.scss';
+@import '../app/typography/courier-new.scss';
+@import '../app/typography/segoe-ui.scss';
+@import '../app/typography/times-new-roman.scss';
+@import '../app/typography/verdana.scss';
+
+
+//initalize theem
+@include angular-material-theme($indigo-dark-theme);

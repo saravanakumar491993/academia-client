@@ -1,0 +1,23 @@
+$indigo-theme-primary: mat-palette($mat-indigo);
+$indigo-theme-accent: mat-palette($mat-indigo, A200, A100, A400);
+$indigo-theme-warn: mat-palette($mat-deep-orange);
+
+$indigo-light-theme: mat-light-theme(
+    $indigo-theme-primary,
+    $indigo-theme-accent,
+    $indigo-theme-warn
+);
+
+$indigo-dark-theme: mat-dark-theme(
+    $indigo-theme-primary,
+    $indigo-theme-accent,
+    $indigo-theme-warn
+);
+
+.indigo-light-theme {
+    @include angular-material-theme($indigo-light-theme);
+}
+
+.indigo-dark-theme {
+    @include angular-material-theme($indigo-dark-theme);
+}
