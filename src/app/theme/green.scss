@@ -1,3 +1,4 @@
+
 $green-theme-primary: mat-palette($mat-green);
 $green-theme-accent: mat-palette($mat-green, A200, A100, A400);
 $green-theme-warn: mat-palette($mat-deep-orange);
@@ -15,11 +16,14 @@ $green-dark-theme: mat-dark-theme(
 );
 
 
+
 .green-light-theme {
+    @include custom-theme($yellow-light-theme);
     @include angular-material-theme($green-light-theme);
 }
 
 .green-dark-theme {
+    @include custom-theme($yellow-dark-theme);
     @include angular-material-theme($green-dark-theme);
 }
 

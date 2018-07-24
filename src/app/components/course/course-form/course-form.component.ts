@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Course } from '../../../model/course';
 import { CourseService } from '../../../service/course.service';
+import { Router } from '@angular/router';
+import { API } from '../../../constants/api.constants';
 
 @Component({
   selector: 'app-course-form',
@@ -15,7 +17,8 @@ export class CourseFormComponent implements OnInit {
   formSubmitted: EventEmitter<Course> = new EventEmitter();
 
   constructor(
-    private courseService: CourseService
+    private courseService: CourseService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -23,6 +26,7 @@ export class CourseFormComponent implements OnInit {
 
   addCourse(){
     this.courseService.addCourse(this.course).subscribe(course=>{
+      this.router.navigate(['courses', course.id]);
     });
   }
 }

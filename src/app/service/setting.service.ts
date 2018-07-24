@@ -4,7 +4,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 @Injectable()
 export class SettingService {
 
-  accentColors = [ "blue", "green", "violet", "pink", "yellow" ];
+  accentColors = [ "indigo", "green", "blue", "pink", "yellow" ];
 
   fontFamilies = [
     { "Key" : "Arial", "Value" : "arial" },

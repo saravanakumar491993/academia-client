@@ -1,6 +1,6 @@
 
 <div class="outer-container">
-  <form #loginForm="ngForm" class="container" (submit)="login()">
+  <form #loginForm="ngForm" class="container login-theme-container" (submit)="login()">
 
     <span>Login</span>
 
@@ -13,6 +13,5 @@
     </mat-form-field>
 
     <button  mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Login</button>
-
   </form>
 </div>

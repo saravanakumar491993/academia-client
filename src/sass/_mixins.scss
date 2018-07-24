@@ -1,0 +1,24 @@
+
+@mixin custom-theme($theme) {
+
+    $primary: map-get($theme, primary);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+    $labelColor: "";
+
+    @if (map-get($theme, is-dark)) {
+        $labelColor: red;
+    } @else {
+        $labelColor: yellow;
+    }
+
+    .label {
+        color: $labelColor !important;
+    }
+
+    .login-theme-container {
+        box-shadow: 1px 1px 10px 2px mat-color($foreground, divider) !important;
+        border: 1px solid mat-color($foreground, divider) !important;
+    }
+}

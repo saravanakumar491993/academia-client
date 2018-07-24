@@ -1,3 +1,4 @@
+
 $pink-theme-primary: mat-palette($mat-pink);
 $pink-theme-accent: mat-palette($mat-pink, A200, A100, A400);
 $pink-theme-warn: mat-palette($mat-deep-orange);
@@ -15,9 +16,11 @@ $pink-dark-theme: mat-dark-theme(
 );
 
 .pink-light-theme {
+    @include custom-theme($yellow-light-theme);
     @include angular-material-theme($pink-light-theme);
 }
 
 .pink-dark-theme {
+    @include custom-theme($yellow-dark-theme);
     @include angular-material-theme($pink-dark-theme);
 }

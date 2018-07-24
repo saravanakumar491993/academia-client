@@ -1,3 +1,4 @@
+
 $blue-theme-primary: mat-palette($mat-blue);
 $blue-theme-accent: mat-palette($mat-blue, A200, A100, A400);
 $blue-theme-warn: mat-palette($mat-deep-orange);
@@ -6,6 +7,7 @@ $blue-light-theme: mat-light-theme(
     $blue-theme-primary,
     $blue-theme-accent,
     $blue-theme-warn
+
 );
 
 $blue-dark-theme: mat-dark-theme(
@@ -15,9 +17,11 @@ $blue-dark-theme: mat-dark-theme(
 );
 
 .blue-light-theme {
+    @include custom-theme($yellow-light-theme);
     @include angular-material-theme($blue-light-theme);
 }
 
 .blue-dark-theme {
+    @include custom-theme($yellow-dark-theme);
     @include angular-material-theme($blue-dark-theme);
 }

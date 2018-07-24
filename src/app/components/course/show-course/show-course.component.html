@@ -1,3 +1,23 @@
-<p>
-  show-course works!
-</p>
+
+<h2 >Course Detail</h2>
+
+<button mat-icon-button ><mat-icon>edit</mat-icon></button>
+
+<div>
+    <div *ngIf="course">
+      <div class="block">
+        <span class="label">Course Name</span>
+        <span>{{course.name}}</span>
+      </div>
+
+      <div class="block" *ngIf="course.courseCode">
+        <span class="label">Course Code</span>
+        <span>{{course.courseCode}}</span>
+      </div>
+
+      <div class="block">
+        <span class="label">Fees</span>
+        <span>{{course.fees}}</span>
+      </div>
+    </div>
+</div>

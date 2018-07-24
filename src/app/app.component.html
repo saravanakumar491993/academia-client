@@ -17,8 +17,9 @@
                 <app-option-item *ngFor="let option of modules" [appModule]="option" (optionSelected)="selectOptionHandler($event)"></app-option-item>
             </mat-nav-list>
         </mat-sidenav>
-        <mat-sidenav-content class="nav-content">
+        <mat-sidenav-content>
+            <mat-progress-bar mode="indeterminate" *ngIf="showLoader"></mat-progress-bar>
             <router-outlet></router-outlet>
-        </mat-sidenav-content>
+            </mat-sidenav-content>
     </mat-sidenav-container>
 </div>

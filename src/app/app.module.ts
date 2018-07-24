@@ -20,6 +20,7 @@ import { CourseFormComponent } from './components/course/course-form/course-form
 import { CourseService } from './service/course.service';
 import { ShowCourseComponent } from './components/course/show-course/show-course.component';
 import { SettingService } from './service/setting.service';
+import { LoaderService } from './service/loader.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { SettingService } from './service/setting.service';
     AuthService,
     MediaMatcher,
     CourseService,
-    SettingService
+    SettingService,
+    LoaderService
    ],
     bootstrap: [AppComponent
   ]
