@@ -31,7 +31,7 @@ export class ListCourseComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-      this.getCourse(1, 5);
+      this.getCourse(0, 5);
   }
 
   ngAfterViewInit() {

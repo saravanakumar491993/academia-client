@@ -36,7 +36,6 @@ export class AuthInterceptor implements HttpInterceptor {
               // do stuff with response if you want
             }
           }, (err: any) => {
-              alert(err);
             if (err instanceof HttpErrorResponse) {
                 switch(err.status){
                     case 400:
