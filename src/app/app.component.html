@@ -1,5 +1,6 @@
 
 <div class="mat-typography container">
+    
     <mat-toolbar color="primary" class="toolbar">
         <button mat-icon-button (click)="snav.toggle()" *ngIf="authService.isLoggedIn()"><mat-icon>menu</mat-icon> </button>
         <h1 class="app-name">{{title}}</h1>
@@ -11,8 +12,8 @@
     </mat-toolbar>
 
 
-    <mat-sidenav-container fullscreen [style.marginTop.px]="mobileQuery.matches ? 56 : 60" >
-        <mat-sidenav class="sidenav" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" fixedTopGap="56" [fixedInViewport]="mobileQuery.matches" >
+    <mat-sidenav-container fullscreen [style.marginTop.px]="isMobile ? 56 : 60" >
+        <mat-sidenav class="sidenav" #snav [mode]="isMobile ? 'over' : 'side'" fixedTopGap="56" [fixedInViewport]="isMobile" >
             <mat-nav-list>
                 <app-option-item *ngFor="let option of modules" [appModule]="option" (optionSelected)="selectOptionHandler($event)"></app-option-item>
             </mat-nav-list>
@@ -20,6 +21,6 @@
         <mat-sidenav-content>
             <mat-progress-bar mode="indeterminate" *ngIf="showLoader"></mat-progress-bar>
             <router-outlet></router-outlet>
-            </mat-sidenav-content>
+        </mat-sidenav-content>
     </mat-sidenav-container>
 </div>

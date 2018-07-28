@@ -1,0 +1,66 @@
+@import "~sass/_variables";
+
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.list {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    border-right:  1px solid;
+}
+
+
+    
+.items {
+    flex: 1;
+    overflow: hidden;
+
+
+    &:hover {
+        overflow: auto;
+    }
+}
+
+
+.detail {
+    flex: 2;
+}
+
+.paginator {
+    justify-self: flex-end;
+}
+
+.searchField {
+    padding: 0px 15px;
+}
+
+.empty-list {
+    flex: 1;
+    text-align: center;
+}
+
+mat-nav-list {
+    padding-top: 0px;
+}
+
+@media only screen and (max-width: $tablet-width) {
+
+    .detail {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
+    .list {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
+}

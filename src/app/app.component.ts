@@ -6,7 +6,7 @@ import {startWith} from 'rxjs/operators/startWith';
 import {map} from 'rxjs/operators/map';
 import { AuthService } from './service/auth.service';
 import { User } from './model/user';
-import { MediaMatcher } from '@angular/cdk/layout';
+import { MediaMatcher, BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { Router, NavigationStart } from '@angular/router';
 import { UrlConstant } from './constants/url.constants';
 import { ApplicationModule, ApplicationModuleOption } from './model/application-module';
@@ -14,6 +14,7 @@ import { AppConstant } from './constants/app.contants';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { SettingService } from './service/setting.service';
 import { LoaderService } from './service/loader.service';
+import { MediaType } from './constants/media.constants';
 
 @Component({
   selector: 'app-root',
@@ -22,53 +23,63 @@ import { LoaderService } from './service/loader.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'Academia';
-  mobileQuery: MediaQueryList;
   modules = AppConstant.AppModules;
-  private _mobileQueryListener;
   public showLoader: boolean;
   @ViewChild('snav') sideNav: MatSidenav;
-
+  public isMobile: boolean;
+  
   constructor(
     private settingService: SettingService,
     public authService: AuthService,
-    private changeDetectorRef: ChangeDetectorRef,
-    private media: MediaMatcher,
     private router: Router,
+    private breakpointObserver: BreakpointObserver,
     private loaderService: LoaderService
   ) 
   {
-    
+
   }
 
+  mediaQueryListener(state: BreakpointState) {
+    this.isMobile = state.matches;
+
+    if(this.isMobile) {
+      this.sideNav.close();
+    }
+    else {
+      this.sideNav.open();
+    }
+  }
 
   ngOnInit(){   
     this.settingService.Init();
+
+    this.breakpointObserver.observe([ `(max-width: ${MediaType.Mobile})`])
+      .subscribe( state => this.mediaQueryListener(state));
+
     this.loaderService.loaderVisibilityChanged$.subscribe( t => {
       //set to prevent lifecycle change error.
       setTimeout(() => {
         this.showLoader = t;
       }, 0);
     });
-    this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
- 
-    this.router.events.subscribe(evt =>{
+   
+    this.router.events.subscribe(evt => this.handleRouterEvents(evt)); 
+  }
 
-      if (evt instanceof NavigationStart) {
+  handleRouterEvents(evt) {
+    if (evt instanceof NavigationStart) {
 
-        if(this.authService.isLoggedIn()){
-          if(evt.url == UrlConstant.LoginPath){
-            window.location.href= UrlConstant.StartPath;
-          }
-        }
-        else{
-          if(evt.url != UrlConstant.LoginPath){
-            window.location.href= UrlConstant.LoginPath;
-          }
+      if(this.authService.isLoggedIn()){
+        if(evt.url == UrlConstant.LoginPath){
+          window.location.href= UrlConstant.StartPath;
         }
       }
-    });
+      else{
+        if(evt.url != UrlConstant.LoginPath){
+          window.location.href= UrlConstant.LoginPath;
+        }
+      }
+    }
   }
 
   selectOptionHandler(option: ApplicationModuleOption){
@@ -76,7 +87,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
   logout(){
@@ -86,7 +96,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   handleMenuClick(){
-    if(this.mobileQuery.matches){
+    if(this.isMobile){
       this.sideNav.close();
     }
   }

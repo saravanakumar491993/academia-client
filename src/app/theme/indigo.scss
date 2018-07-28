@@ -16,11 +16,11 @@ $indigo-dark-theme: mat-dark-theme(
 );
 
 .indigo-light-theme {
-    @include custom-theme($yellow-light-theme);
+    @include custom-theme($indigo-light-theme);
     @include angular-material-theme($indigo-light-theme);
 }
 
 .indigo-dark-theme {
-    @include custom-theme($yellow-dark-theme);
+    @include custom-theme($indigo-dark-theme);
     @include angular-material-theme($indigo-dark-theme);
 }

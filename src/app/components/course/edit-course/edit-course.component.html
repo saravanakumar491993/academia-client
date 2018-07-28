@@ -1,0 +1,5 @@
+<div class="container">
+  <h2>Edit Course</h2>
+  <app-course-form *ngIf="course" [course]="course" (formSubmitted)="formSubmittedHandler($event)"></app-course-form>
+</div>
+

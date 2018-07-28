@@ -36,6 +36,5 @@ export class AuthService {
   public logout(){
       window.localStorage.removeItem("authtoken");
       this.currentUser = null;
-
   }
 }

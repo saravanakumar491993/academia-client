@@ -1,23 +1,45 @@
-
-<h2 >Course Detail</h2>
-
-<button mat-icon-button ><mat-icon>edit</mat-icon></button>
-
-<div>
-    <div *ngIf="course">
-      <div class="block">
-        <span class="label">Course Name</span>
-        <span>{{course.name}}</span>
-      </div>
-
-      <div class="block" *ngIf="course.courseCode">
-        <span class="label">Course Code</span>
-        <span>{{course.courseCode}}</span>
-      </div>
-
-      <div class="block">
-        <span class="label">Fees</span>
-        <span>{{course.fees}}</span>
-      </div>
+<div class="container">
+  <div class="header">
+    <div>
+        <h2>Course Detail</h2>
     </div>
+
+    <div class="menu" >
+      <button mat-icon-button color="primary" (click)="edit()">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+      <button *ngIf="canClose" mat-icon-button color="primary" (click)="delete()">
+          <mat-icon>delete</mat-icon>
+      </button>
+
+      <button *ngIf="canClose" mat-icon-button color="primary" (click)="close()">
+        <mat-icon>close</mat-icon>
+      </button>
+     
+    </div>
+  </div>
+
+
+  <div *ngIf="course" class="content">
+    <div class="block">
+      <div class="label">Course Id</div>
+      <div>{{course.id}}</div>
+    </div>
+
+    <div class="block">
+      <div class="label">Course Name</div>
+      <div>{{course.name}}</div>
+    </div>
+
+    <div class="block" *ngIf="course.courseCode">
+      <div class="label">Course Code</div>
+      <div>{{course.courseCode}}</div>
+    </div>
+
+    <div class="block">
+      <div class="label">Fees</div>
+      <div>{{course.fees}}</div>
+    </div>
+  </div>
 </div>

@@ -1,3 +1,5 @@
+@import "~sass/_variables";
+
 .content{
     margin-bottom: 50px;
 }
@@ -9,4 +11,8 @@
 
 mat-icon{
     height: 36px;
+}
+
+.container {
+    padding: $router-content-padding;
 }

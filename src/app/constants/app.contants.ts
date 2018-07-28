@@ -26,7 +26,7 @@ export class AppConstant {
                 },
                 { 
                     name: "List Course",
-                    location: "/courses/new"
+                    location: "/courses"
                 }                
             ]
         },

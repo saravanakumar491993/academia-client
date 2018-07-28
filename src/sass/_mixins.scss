@@ -5,20 +5,32 @@
     $warn: map-get($theme, warn);
     $background: map-get($theme, background);
     $foreground: map-get($theme, foreground);
-    $labelColor: "";
 
+    $border-color: mat-color($foreground, divider);
+    $label-color: mat-color($foreground, hint-text);
+    $selected-color: "";
+
+    //do theme specific actions.
     @if (map-get($theme, is-dark)) {
-        $labelColor: red;
+        $selected-color: map-get($primary, 600);
     } @else {
-        $labelColor: yellow;
+        $selected-color: map-get($primary, A100);
     }
 
     .label {
-        color: $labelColor !important;
+        color: $label-color !important;
+    }
+
+    .border-color {
+        border-color:  $border-color !important;
+    }
+
+    .selected {
+        background-color: $selected-color !important;
     }
 
     .login-theme-container {
         box-shadow: 1px 1px 10px 2px mat-color($foreground, divider) !important;
-        border: 1px solid mat-color($foreground, divider) !important;
+        border: 1px solid $border-color !important;
     }
 }

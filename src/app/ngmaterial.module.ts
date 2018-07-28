@@ -1,10 +1,11 @@
-import {MatButtonModule, MatNativeDateModule , MatCheckboxModule, MatIcon, MatIconModule, MatProgressBarModule, MatProgressSpinnerModule, MatDatepickerModule, MatInputModule, MatFormFieldModule, MatAutocompleteModule, MatSelectModule, MatDialogModule, MatToolbarModule, MatSidenavModule, MatSnackBarModule, MatListModule} from '@angular/material';
+import {MatButtonModule, MatNativeDateModule , MatCheckboxModule, MatIcon, MatIconModule, MatProgressBarModule, MatProgressSpinnerModule, MatDatepickerModule, MatInputModule, MatFormFieldModule, MatAutocompleteModule, MatSelectModule, MatDialogModule, MatToolbarModule, MatSidenavModule, MatSnackBarModule, MatListModule, MatPaginatorModule} from '@angular/material';
 import { NgModule } from '@angular/core';
 
 @NgModule({
  
   exports: 
     [
+        //angular material
         MatButtonModule,
         MatCheckboxModule,
         MatIconModule,
@@ -19,7 +20,9 @@ import { NgModule } from '@angular/core';
         MatToolbarModule,
         MatSidenavModule,
         MatSnackBarModule,
-        MatListModule
+        MatListModule,
+        MatPaginatorModule,
+        MatAutocompleteModule
     ],
 })
 export class NgMaterialModule { }

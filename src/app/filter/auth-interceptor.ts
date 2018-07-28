@@ -36,6 +36,7 @@ export class AuthInterceptor implements HttpInterceptor {
               // do stuff with response if you want
             }
           }, (err: any) => {
+              alert(err);
             if (err instanceof HttpErrorResponse) {
                 switch(err.status){
                     case 400:
@@ -44,21 +45,21 @@ export class AuthInterceptor implements HttpInterceptor {
                     case 401:
                         this.unAuthorized(req);
                         break;
-                    case 409:
-                        this.conflict(req);
+                    case 500:
+                        this.unKnownError();
                         break;
                 }
             }
         });
     }
 
-    badRequest(){
+    badRequest() {
         this.snackBar.open("Bad Request", "Close",  {
             duration: AppConstant.SnackBarDismissalTime
           });
     }
 
-    unAuthorized(req){
+    unAuthorized(req) {
         if(req.url == API.Authenticate){
             this.snackBar.open("Login failed", "Close",  {
                 duration: AppConstant.SnackBarDismissalTime
@@ -70,10 +71,10 @@ export class AuthInterceptor implements HttpInterceptor {
         }
     }
 
-    conflict(req: HttpRequest<any>){
-        this.snackBar.open("Data conflict", "Close",  {
+    unKnownError() {
+        this.snackBar.open("Unknown Error occured", "Close",  {
             duration: AppConstant.SnackBarDismissalTime
-          });
+        });
     }
 }
 

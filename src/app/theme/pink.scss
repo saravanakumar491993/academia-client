@@ -16,11 +16,11 @@ $pink-dark-theme: mat-dark-theme(
 );
 
 .pink-light-theme {
-    @include custom-theme($yellow-light-theme);
+    @include custom-theme($pink-light-theme);
     @include angular-material-theme($pink-light-theme);
 }
 
 .pink-dark-theme {
-    @include custom-theme($yellow-dark-theme);
+    @include custom-theme($pink-dark-theme);
     @include angular-material-theme($pink-dark-theme);
 }

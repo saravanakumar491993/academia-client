@@ -1,3 +1,25 @@
-<p>
-  list-course works!
-</p>
+<div class="container">
+  <div class="list border-color" *ngIf="canShowList">
+<!-- 
+      <mat-form-field class="searchField">
+          <input matInput placeholder="Search Course" (keydown)="keyDownHandler($event)">
+        </mat-form-field> -->
+
+    <div class="items" *ngIf="courses">
+      <mat-nav-list>
+        <a mat-list-item *ngFor="let course of courses" (click)="courseSelected(course.id)" [class.selected]="course.id == selectedId">{{course.id}} {{course.name}}</a>
+      </mat-nav-list>
+    </div>
+
+    <div class="empty-list" *ngIf="canShowEmpty && courses && courses.length == 0">
+        No courses found
+    </div>
+    
+    <mat-paginator class="paginator" [pageSize]="5" [pageIndex]="0" [pageSizeOptions]="[5, 10, 25, 50]">
+    </mat-paginator>
+  </div>
+
+  <div class="detail" *ngIf="selectedId">
+    <app-show-course [courseId]="selectedId" [canClose]="true" (closed)="closeDetail()" ></app-show-course>
+  </div>
+</div>

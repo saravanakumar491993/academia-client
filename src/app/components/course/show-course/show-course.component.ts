@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Course } from '../../../model/course';
 import { CourseService } from '../../../service/course.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoaderService } from '../../../service/loader.service';
+import { MatSnackBar } from '@angular/material';
+import { AppConstant } from '../../../constants/app.contants';
 
 @Component({
   selector: 'app-show-course',
@@ -10,41 +12,69 @@ import { LoaderService } from '../../../service/loader.service';
   styleUrls: ['./show-course.component.scss']
 })
 export class ShowCourseComponent implements OnInit {
- 
+
+  @Input()
+  public canClose: boolean;
+
   private _courseId: number;
   @Input()
-  get courseId(): number{
+  get courseId(): number {
     return this._courseId;
   }
-  set courseId(id: number){
+  set courseId(id: number) {
     this._courseId = id;
     this.loadCourse();
-   
   }
 
   @Input()
   course: Course;
+  @Output()
+  closed: EventEmitter<any> = new EventEmitter();
+  @Output()
+  courseDeleted: EventEmitter<string> = new EventEmitter();
+
 
   constructor(
     private courseService: CourseService,
     private route: ActivatedRoute,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private router: Router,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
-    if(id){
+    if (id) {
       this.courseId = id;
     }
   }
 
-  private loadCourse(){
+  loadCourse() {
+    this.course = null;
     this.loaderService.setLoaderVisibility(true);
-    this.courseService.getCourse(this.courseId).subscribe(course => {
+    this.courseService.get(this.courseId).subscribe(course => {
       setTimeout(() => {
-        this.course = course;
-        this.loaderService.setLoaderVisibility(false);
-      }, 2000);
+        if (course.id == this.courseId) {
+          this.course = course;
+          this.loaderService.setLoaderVisibility(false);
+        }
+      }, 0);
+    });
+  }
+
+  close() {
+    this.closed.emit();
+  }
+
+  edit() {
+    this.router.navigate([`courses/${this.course.id}/edit`]);
+  }
+
+  delete() {
+    this.courseService.delete(this.course.id).subscribe(res => {
+      this.snackBar.open("Course deleted", "Close", {
+        duration: AppConstant.SnackBarDismissalTime
+      })
     });
   }
 }

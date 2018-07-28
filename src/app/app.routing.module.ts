@@ -7,10 +7,12 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { UrlConstant } from './constants/url.constants';
 import { ListCourseComponent } from './components/course/list-course/list-course.component';
 import { ShowCourseComponent } from './components/course/show-course/show-course.component';
+import { EditCourseComponent } from './components/course/edit-course/edit-course.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/courses/new', pathMatch: 'full' },
   { path: 'courses/new', component: NewCourseComponent },
+  { path: 'courses/:id/edit', component: EditCourseComponent },
   { path: 'courses', component: ListCourseComponent },
   { path: 'courses/:id', component: ShowCourseComponent },
   { path: 'settings', component: SettingComponent },

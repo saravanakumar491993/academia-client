@@ -17,11 +17,11 @@ $blue-dark-theme: mat-dark-theme(
 );
 
 .blue-light-theme {
-    @include custom-theme($yellow-light-theme);
+    @include custom-theme($blue-light-theme);
     @include angular-material-theme($blue-light-theme);
 }
 
 .blue-dark-theme {
-    @include custom-theme($yellow-dark-theme);
+    @include custom-theme($blue-dark-theme);
     @include angular-material-theme($blue-dark-theme);
 }

@@ -18,12 +18,12 @@ $green-dark-theme: mat-dark-theme(
 
 
 .green-light-theme {
-    @include custom-theme($yellow-light-theme);
+    @include custom-theme($green-light-theme);
     @include angular-material-theme($green-light-theme);
 }
 
 .green-dark-theme {
-    @include custom-theme($yellow-dark-theme);
+    @include custom-theme($green-dark-theme);
     @include angular-material-theme($green-dark-theme);
 }
 
