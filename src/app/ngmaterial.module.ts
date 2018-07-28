@@ -22,7 +22,7 @@ import { NgModule } from '@angular/core';
         MatSnackBarModule,
         MatListModule,
         MatPaginatorModule,
-        MatTooltipModule
+        MatTooltipModule,
     ],
 })
 export class NgMaterialModule { }

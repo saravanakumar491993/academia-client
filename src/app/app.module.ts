@@ -22,6 +22,7 @@ import { ShowCourseComponent } from './components/course/show-course/show-course
 import { SettingService } from './service/setting.service';
 import { LoaderService } from './service/loader.service';
 import { EditCourseComponent } from './components/course/edit-course/edit-course.component';
+import { DeleteDialogComponent } from './components/dialog/delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { EditCourseComponent } from './components/course/edit-course/edit-course
     CourseFormComponent,
     ShowCourseComponent,
     EditCourseComponent,
+    DeleteDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,11 @@ import { EditCourseComponent } from './components/course/edit-course/edit-course
     SettingService,
     LoaderService,
    ],
-    bootstrap: [AppComponent
+   entryComponents: [
+    DeleteDialogComponent
+  ],
+    bootstrap: [
+      AppComponent
   ]
 })
 export class AppModule { }

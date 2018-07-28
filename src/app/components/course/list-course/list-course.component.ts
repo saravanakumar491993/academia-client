@@ -78,7 +78,7 @@ export class ListCourseComponent implements OnInit, AfterViewInit, OnDestroy {
         this.courses = res["courses"];
         this.canShowEmpty = true;
         this.loaderService.setLoaderVisibility(false);
-      }, 500);
+      }, 0);
     });
   }
 

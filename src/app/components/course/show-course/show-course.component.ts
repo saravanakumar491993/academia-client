@@ -3,8 +3,9 @@ import { Course } from '../../../model/course';
 import { CourseService } from '../../../service/course.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoaderService } from '../../../service/loader.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { AppConstant } from '../../../constants/app.contants';
+import { DeleteDialogComponent } from '../../dialog/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-show-course',
@@ -39,7 +40,8 @@ export class ShowCourseComponent implements OnInit {
     private route: ActivatedRoute,
     private loaderService: LoaderService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -71,10 +73,19 @@ export class ShowCourseComponent implements OnInit {
   }
 
   delete() {
-    this.courseService.delete(this.course.id).subscribe(res => {
-      this.snackBar.open("Course deleted", "Close", {
-        duration: AppConstant.SnackBarDismissalTime
-      })
+    let dialogRef = this.dialog.open(DeleteDialogComponent, {
+      width: '250px',
+      data: { msg: `Delete ${this.course.name}?` }
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.courseService.delete(this.course.id).subscribe(res => {
+          this.snackBar.open("Course deleted", "Close", {
+            duration: AppConstant.SnackBarDismissalTime
+          })
+        })
+      }
+    })
   }
 }
