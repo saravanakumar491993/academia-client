@@ -1,5 +1,6 @@
 import { IAuditable } from "./contract/iauditable";
 import { User } from "./user";
+import { CountryCode } from "../constants/person.constants";
 
 export abstract class Address implements IAuditable {
     id: number;

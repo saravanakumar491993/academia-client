@@ -1,4 +1,4 @@
-import {MatButtonModule, MatNativeDateModule , MatCheckboxModule, MatIcon, MatIconModule, MatProgressBarModule, MatProgressSpinnerModule, MatDatepickerModule, MatInputModule, MatFormFieldModule, MatAutocompleteModule, MatSelectModule, MatDialogModule, MatToolbarModule, MatSidenavModule, MatSnackBarModule, MatListModule, MatPaginatorModule, MatTooltipModule} from '@angular/material';
+import {MatButtonModule, MatNativeDateModule , MatCheckboxModule, MatIcon, MatIconModule, MatProgressBarModule, MatProgressSpinnerModule, MatDatepickerModule, MatInputModule, MatFormFieldModule, MatAutocompleteModule, MatSelectModule, MatDialogModule, MatToolbarModule, MatSidenavModule, MatSnackBarModule, MatListModule, MatPaginatorModule, MatTooltipModule, MatRadioModule} from '@angular/material';
 import { NgModule } from '@angular/core';
 
 @NgModule({
@@ -23,6 +23,7 @@ import { NgModule } from '@angular/core';
         MatListModule,
         MatPaginatorModule,
         MatTooltipModule,
+        MatRadioModule
     ],
 })
 export class NgMaterialModule { }

@@ -74,7 +74,6 @@ export class ShowCourseComponent implements OnInit {
 
   delete() {
     let dialogRef = this.dialog.open(DeleteDialogComponent, {
-      width: '250px',
       data: { msg: `Delete ${this.course.name}?` }
     });
 

@@ -9,11 +9,11 @@ export class AppConstant {
             options: [
                 { 
                     name: "Add Student",
-                    location: "/courses/new"
+                    location: "/students/new"
                 },
                 { 
                     name: "List Student",
-                    location: "/courses/new"
+                    location: "/students"
                 }                
             ]
         },

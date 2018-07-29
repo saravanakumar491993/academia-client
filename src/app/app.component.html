@@ -13,7 +13,7 @@
 
 
     <mat-sidenav-container fullscreen [style.marginTop.px]="isMobile ? 56 : 60" >
-        <mat-sidenav class="sidenav" #snav [mode]="isMobile ? 'over' : 'side'" fixedTopGap="56" [fixedInViewport]="isMobile" >
+        <mat-sidenav class="sidenav border-color" #snav [mode]="isMobile ? 'over' : 'side'" fixedTopGap="56" [fixedInViewport]="isMobile" >
             <mat-nav-list>
                 <app-option-item *ngFor="let option of modules" [appModule]="option" (optionSelected)="selectOptionHandler($event)"></app-option-item>
             </mat-nav-list>

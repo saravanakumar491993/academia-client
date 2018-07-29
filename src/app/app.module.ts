@@ -23,6 +23,11 @@ import { SettingService } from './service/setting.service';
 import { LoaderService } from './service/loader.service';
 import { EditCourseComponent } from './components/course/edit-course/edit-course.component';
 import { DeleteDialogComponent } from './components/dialog/delete-dialog/delete-dialog.component';
+import { StudentFormComponent } from './components/student/student-form/student-form.component';
+import { EditStudentComponent } from './components/student/edit-student/edit-student.component';
+import { ListStudentComponent } from './components/student/list-student/list-student.component';
+import { NewStudentComponent } from './components/student/new-student/new-student.component';
+import { ShowStudentComponent } from './components/student/show-student/show-student.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +41,11 @@ import { DeleteDialogComponent } from './components/dialog/delete-dialog/delete-
     ShowCourseComponent,
     EditCourseComponent,
     DeleteDialogComponent,
+    StudentFormComponent,
+    EditStudentComponent,
+    ListStudentComponent,
+    NewStudentComponent,
+    ShowStudentComponent,
   ],
   imports: [
     BrowserModule,

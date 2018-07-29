@@ -2,6 +2,7 @@ import { IAuditable } from "./contract/iauditable";
 import { User } from "./user";
 import { PhoneNumber } from "./phonenumber";
 import { ContactAddress } from "./contactaddress";
+import { NamePrefix, NameSuffix, Gender, BloodGroup, CountryCode, MaritalStatus, PersonStatus } from "../constants/person.constants";
 
 export abstract class Person implements IAuditable {
     id: number;
@@ -32,4 +33,5 @@ export abstract class Person implements IAuditable {
     referredPerson: Person;
     phoneNumbers: PhoneNumber[];
     addresses: ContactAddress[];
+
 }

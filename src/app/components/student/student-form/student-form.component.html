@@ -1,0 +1,151 @@
+<form #studentForm="ngForm" class="container">
+
+  <!--Name-->
+  <div class="block">
+    <h3 class="label">Name</h3>
+    <div>
+      <mat-form-field>
+        <mat-select #prefix placeholder="Prefix" [(ngModel)]="student.prefix" name="Prefix">
+          <mat-option *ngFor="let p of namePrefixes" value="{{p.value}}">{{p.key}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Initial" [(ngModel)]="student.initial" name="Initial">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="First Name" [(ngModel)]="student.firstName" name="FirstName">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Middle Name" [(ngModel)]="student.middleName" name="MiddleName">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Last Name" [(ngModel)]="student.lastName" name="LastName">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Nick Name" [(ngModel)]="student.nickName" name="NickName">
+      </mat-form-field>
+      <mat-form-field class="name-extn">
+        <mat-select #suffix placeholder="Suffix" [(ngModel)]="student.suffix" name="Suffix">
+          <mat-option *ngFor="let p of nameSuffixes" value="{{p.value}}">{{p.key}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+
+
+  <br/>
+  <br/>
+  <br/>
+
+
+  <!--Personal info-->
+  <div class="block">
+    <h3 class="label">Personal Info</h3>
+    <div>
+      <mat-form-field class="child">
+        <input matInput placeholder="DOB" type="date">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select #bloodGroup placeholder="Blood Group" [(ngModel)]="student.bloodGroup" name="BloodGroup" >
+          <mat-option *ngFor="let p of bloodGroupes" value="{{p.value}}">{{p.key.replace("Positive", "+ve").replace("Negative", "-ve")}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-select #countryCode placeholder="Country" [(ngModel)]="student.countryCode" name="CountryCode" >
+          <mat-option *ngFor="let p of countryCodes" value="{{p.value}}">{{p.key}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select #maritalStatus placeholder="Marital Status" [(ngModel)]="student.maritalStatus" name="MaritalStatus">
+          <mat-option *ngFor="let p of maritalStatuses" value="{{p.value}}">{{p.key}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+
+  <br/>
+  <br/>
+  <br/>
+
+
+
+  <!--contact addresses-->
+  <div>
+    <h3 class="label">Address</h3>
+    <div  class="block" *ngFor="let contactAddress of student.addresses; let i = index">
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Line One" name="{{'lineOne'+i}}" [(ngModel)]="contactAddress.lineOne">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Line Two" name="{{'lineTwo'+i}}" [(ngModel)]="contactAddress.lineTwo">
+        </mat-form-field>
+      </div>
+      <div>
+          <mat-form-field>
+            <input matInput placeholder="locality" name="{{'locality'+i}}" [(ngModel)]="contactAddress.locality">
+          </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="city" name="{{'city'+i}}" [(ngModel)]="contactAddress.city">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="state" name="{{'state'+i}}" [(ngModel)]="contactAddress.state">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="postalCode" name="{{'postalCode'+i}}" [(ngModel)]="contactAddress.postalCode">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select  placeholder="Country" [(ngModel)]="contactAddress.countryCode" name="{{'country'+i}}">
+              <mat-option *ngFor="let p of countryCodes" value="{{p.value}}">{{p.key}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <br/>
+  <br/>
+  <br/>
+
+
+  <!--phone numbers-->
+  <div>
+    <h3 style="display: inline-block" class="label">Phone Number</h3> 
+    <button mat-icon-button matTooltip="Add phone" (click)="addPhone()"><mat-icon>add</mat-icon></button>
+    
+    <div  class="phone-numbers" *ngFor="let phoneNumber of student.phoneNumbers; let i = index">
+        <mat-form-field>
+          <input matInput placeholder="Phone Number" name="{{'number'+i}}" [(ngModel)]="phoneNumber.number">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select  placeholder="Phone Type" [(ngModel)]="phoneNumber.phoneType" name="{{'phoneType'+i}}">
+            <mat-option *ngFor="let p of phoneTypes" value="{{p.value}}">{{p.key}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-icon-button [class.mat-primary]="phoneNumber.isPrimary" matTooltip="Mark Favorite" (click)="markFavorite(phoneNumber)"> <mat-icon>favorite</mat-icon></button>
+        <button mat-icon-button [class.opaque]="phoneNumber.isPrimary" matTooltip="close" (click)="removePhoneNumber(i)"> <mat-icon>close</mat-icon></button>
+    </div>
+  </div>
+
+
+
+  <button class="submit-button" mat-raised-button [disabled]="!studentForm.form.valid" (click)="submitHandler($event)">Submit</button>
+</form>
