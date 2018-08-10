@@ -28,6 +28,10 @@
 
 .detail {
     flex: 2;
+    overflow: hidden;
+    &:hover {
+        overflow: auto;
+    }
 }
 
 .paginator {

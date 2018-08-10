@@ -4,6 +4,7 @@ import { NamePrefix, NameSuffix, BloodGroup, CountryCode, MaritalStatus, PhoneTy
 import { ToArray } from '../../../helper/enum-helper';
 import { ContactAddress } from '../../../model/contactaddress';
 import { PhoneNumber } from '../../../model/phonenumber';
+import { MatDatepickerInputEvent } from '@angular/material';
 
 @Component({
   selector: 'app-student-form',
@@ -46,14 +47,14 @@ export class StudentFormComponent implements OnInit {
   }
 
   submitHandler() { 
-    alert(JSON.stringify(this.student));
     this.formSubmitted.emit(this.student);
   }
 
   addPhone() {
     this.student.phoneNumbers.push(new PhoneNumber());
   }
-  markFavorite(phoneNumber: PhoneNumber) {
+  
+  markPrimary(phoneNumber: PhoneNumber) {
     this.student.phoneNumbers.map(t => t.isPrimary = false);
     phoneNumber.isPrimary = true;
   }
@@ -61,4 +62,5 @@ export class StudentFormComponent implements OnInit {
   removePhoneNumber(index: number) {
     this.student.phoneNumbers.splice(index, 1)
   }
+
 }

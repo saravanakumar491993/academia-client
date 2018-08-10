@@ -4,4 +4,5 @@ export class API {
     private static readonly _BaseUrl: string = `${API._Host}${API._Api}`
     public static readonly Authenticate: string = `${API._BaseUrl}/authenticate`;
     public static readonly Courses: string = `${API._BaseUrl}/courses`;
+    public static readonly Students: string = `${API._BaseUrl}/students`;
   }

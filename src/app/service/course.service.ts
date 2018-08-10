@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Course } from '../model/course';
 import { Observable } from 'rxjs/Observable';
 import { API } from '../constants/api.constants';
-import { HttpResponse } from 'selenium-webdriver/http';
 import { Subject } from 'rxjs/Subject';
 
 @Injectable()

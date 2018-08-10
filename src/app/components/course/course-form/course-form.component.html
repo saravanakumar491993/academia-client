@@ -12,5 +12,5 @@
     <input matInput type="number" placeholder="Fees" [(ngModel)]="course.fees" name="CourseFees" required>
   </mat-form-field>
 
-  <button mat-raised-button [disabled]="!courseForm.form.valid" (click)="submitHandler($event)">Submit</button>
+  <button mat-raised-button color="primary" [disabled]="!courseForm.form.valid" (click)="submitHandler($event)">Submit</button>
 </form> 

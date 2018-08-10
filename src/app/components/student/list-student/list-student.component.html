@@ -1,3 +1,25 @@
-<p>
-  list-student works!
-</p>
+<div class="container">
+  <div class="list border-color" *ngIf="canShowList">
+<!-- 
+      <mat-form-field class="searchField">
+          <input matInput placeholder="Search Course" (keydown)="keyDownHandler($event)">
+        </mat-form-field> -->
+
+    <div class="items" *ngIf="students" (window:keydown)="selectionChange($event)">
+      <mat-nav-list>
+        <a mat-list-item *ngFor="let student of students" (click)="studentSelected(student)" [class.selected]="selectedStudent && student.id == selectedStudent.id">{{student.id}} {{student.firstName}}</a>
+      </mat-nav-list>
+    </div>
+
+    <div class="empty-list" *ngIf="canShowEmpty && students && students.length == 0">
+        No students found
+    </div>
+    
+    <mat-paginator class="paginator" [pageSize]="5" [pageIndex]="0" [pageSizeOptions]="[5, 10, 25, 50]">
+    </mat-paginator>
+  </div>
+
+  <div class="detail" *ngIf="selectedStudent">
+    <app-show-student [studentId]="selectedStudent.id" [canClose]="true" (closed)="closeDetail()" ></app-show-student>
+  </div>
+</div>

@@ -6,33 +6,33 @@
     <div>
       <mat-form-field>
         <mat-select #prefix placeholder="Prefix" [(ngModel)]="student.prefix" name="Prefix">
-          <mat-option *ngFor="let p of namePrefixes" value="{{p.value}}">{{p.key}}</mat-option>
+          <mat-option *ngFor="let p of namePrefixes" [value]="p.value">{{p.key}}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Initial" [(ngModel)]="student.initial" name="Initial">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="First Name" [(ngModel)]="student.firstName" name="FirstName">
+        <input matInput placeholder="First Name" [(ngModel)]="student.firstName" required maxlength="25" name="FirstName">
       </mat-form-field>
     </div>
 
     <div>
       <mat-form-field>
-        <input matInput placeholder="Middle Name" [(ngModel)]="student.middleName" name="MiddleName">
+        <input matInput placeholder="Middle Name" [(ngModel)]="student.middleName" maxlength="25"  name="MiddleName">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Last Name" [(ngModel)]="student.lastName" name="LastName">
+        <input matInput placeholder="Last Name" [(ngModel)]="student.lastName"  required maxlength="25" name="LastName">
       </mat-form-field>
     </div>
 
     <div>
       <mat-form-field>
-        <input matInput placeholder="Nick Name" [(ngModel)]="student.nickName" name="NickName">
+        <input matInput placeholder="Nick Name" [(ngModel)]="student.nickName" maxlength="25" name="NickName">
       </mat-form-field>
       <mat-form-field class="name-extn">
         <mat-select #suffix placeholder="Suffix" [(ngModel)]="student.suffix" name="Suffix">
-          <mat-option *ngFor="let p of nameSuffixes" value="{{p.value}}">{{p.key}}</mat-option>
+          <mat-option *ngFor="let p of nameSuffixes" [value]="p.value">{{p.key}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -50,24 +50,28 @@
     <h3 class="label">Personal Info</h3>
     <div>
       <mat-form-field class="child">
-        <input matInput placeholder="DOB" type="date">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="student.dob" placeholder="dob" name="dob" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
+
+
       <mat-form-field>
-        <mat-select #bloodGroup placeholder="Blood Group" [(ngModel)]="student.bloodGroup" name="BloodGroup" >
-          <mat-option *ngFor="let p of bloodGroupes" value="{{p.value}}">{{p.key.replace("Positive", "+ve").replace("Negative", "-ve")}}</mat-option>
+        <mat-select #bloodGroup placeholder="Blood Group" [(ngModel)]="student.bloodGroup" name="BloodGroup" required>
+          <mat-option *ngFor="let p of bloodGroupes" [value]="p.value">{{p.key.replace("Positive", "+ve").replace("Negative", "-ve")}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
 
     <div>
       <mat-form-field>
-        <mat-select #countryCode placeholder="Country" [(ngModel)]="student.countryCode" name="CountryCode" >
-          <mat-option *ngFor="let p of countryCodes" value="{{p.value}}">{{p.key}}</mat-option>
+        <mat-select #countryCode placeholder="Country" [(ngModel)]="student.countryCode" name="CountryCode" required>
+          <mat-option *ngFor="let p of countryCodes" [value]="p.value">{{p.key}}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <mat-select #maritalStatus placeholder="Marital Status" [(ngModel)]="student.maritalStatus" name="MaritalStatus">
-          <mat-option *ngFor="let p of maritalStatuses" value="{{p.value}}">{{p.key}}</mat-option>
+        <mat-select #maritalStatus placeholder="Marital Status" [(ngModel)]="student.maritalStatus" name="MaritalStatus" required>
+          <mat-option *ngFor="let p of maritalStatuses" [value]="p.value">{{p.key}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -78,7 +82,20 @@
   <br/>
   <br/>
 
+  <div class="block">
+    <h3 class="label">Date of join</h3>
+    <div>
+      <mat-form-field class="child">
+        <input matInput [matDatepicker]="doj" [(ngModel)]="student.doj" placeholder="doj" name="doj"  required>
+        <mat-datepicker-toggle matSuffix [for]="doj"></mat-datepicker-toggle>
+        <mat-datepicker #doj ></mat-datepicker>
+      </mat-form-field> 
+    </div>
+  </div>
 
+  <br/>
+  <br/>
+  <br/>
 
   <!--contact addresses-->
   <div>
@@ -86,7 +103,7 @@
     <div  class="block" *ngFor="let contactAddress of student.addresses; let i = index">
       <div>
         <mat-form-field>
-          <input matInput placeholder="Line One" name="{{'lineOne'+i}}" [(ngModel)]="contactAddress.lineOne">
+          <input matInput placeholder="Line One" name="{{'lineOne'+i}}" [(ngModel)]="contactAddress.lineOne" required  >
         </mat-form-field>
       </div>
       <div>
@@ -101,19 +118,19 @@
       </div>
       <div>
         <mat-form-field>
-          <input matInput placeholder="city" name="{{'city'+i}}" [(ngModel)]="contactAddress.city">
+          <input matInput placeholder="city" name="{{'city'+i}}" [(ngModel)]="contactAddress.city" required>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="state" name="{{'state'+i}}" [(ngModel)]="contactAddress.state">
+          <input matInput placeholder="state" name="{{'state'+i}}" [(ngModel)]="contactAddress.state" required>
         </mat-form-field>
       </div>
       <div>
         <mat-form-field>
-          <input matInput placeholder="postalCode" name="{{'postalCode'+i}}" [(ngModel)]="contactAddress.postalCode">
+          <input matInput placeholder="postalCode" name="{{'postalCode'+i}}" [(ngModel)]="contactAddress.postalCode" required>
         </mat-form-field>
         <mat-form-field>
-            <mat-select  placeholder="Country" [(ngModel)]="contactAddress.countryCode" name="{{'country'+i}}">
-              <mat-option *ngFor="let p of countryCodes" value="{{p.value}}">{{p.key}}</mat-option>
+            <mat-select  placeholder="Country" [(ngModel)]="contactAddress.countryCode" name="{{'country'+i}}" required>
+              <mat-option *ngFor="let p of countryCodes" [value]="p.value">{{p.key}}</mat-option>
             </mat-select>
           </mat-form-field>
       </div>
@@ -132,20 +149,22 @@
     
     <div  class="phone-numbers" *ngFor="let phoneNumber of student.phoneNumbers; let i = index">
         <mat-form-field>
-          <input matInput placeholder="Phone Number" name="{{'number'+i}}" [(ngModel)]="phoneNumber.number">
+          <input matInput placeholder="Phone Number" required  name="{{'number'+i}}" [(ngModel)]="phoneNumber.number">
         </mat-form-field>
         <mat-form-field>
-          <mat-select  placeholder="Phone Type" [(ngModel)]="phoneNumber.phoneType" name="{{'phoneType'+i}}">
-            <mat-option *ngFor="let p of phoneTypes" value="{{p.value}}">{{p.key}}</mat-option>
+          <mat-select  placeholder="Phone Type" [(ngModel)]="phoneNumber.phoneType" name="{{'phoneType'+i}}" required> 
+            <mat-option *ngFor="let p of phoneTypes" [value]="p.value">{{p.key}}</mat-option>
           </mat-select>
         </mat-form-field>
 
-        <button mat-icon-button [class.mat-primary]="phoneNumber.isPrimary" matTooltip="Mark Favorite" (click)="markFavorite(phoneNumber)"> <mat-icon>favorite</mat-icon></button>
-        <button mat-icon-button [class.opaque]="phoneNumber.isPrimary" matTooltip="close" (click)="removePhoneNumber(i)"> <mat-icon>close</mat-icon></button>
+        <button mat-icon-button [class.mat-primary]="phoneNumber.isPrimary" matTooltip="Mark Favorite" (click)="markPrimary(phoneNumber)"> <mat-icon>star</mat-icon></button>
+        <div [class.opaque]="phoneNumber.isPrimary" style="min-width: 50px;">
+          <button mat-icon-button *ngIf="student.phoneNumbers.length > 1 && !phoneNumber.isPrimary" matTooltip="close" (click)="removePhoneNumber(i)"> <mat-icon>close</mat-icon></button>
+        </div>
     </div>
   </div>
 
 
 
-  <button class="submit-button" mat-raised-button [disabled]="!studentForm.form.valid" (click)="submitHandler($event)">Submit</button>
+  <button class="submit-button" mat-raised-button color="primary" [disabled]="!studentForm.form.valid" (click)="submitHandler($event)">Submit</button>
 </form>

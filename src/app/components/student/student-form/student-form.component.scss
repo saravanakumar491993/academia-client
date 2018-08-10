@@ -23,6 +23,9 @@ h3 {
     }
 }
 
+input::-webkit-calendar-picker-indicator{
+    display: none;
+}
 .phone-numbers {
     display: flex;
     justify-content: space-between;

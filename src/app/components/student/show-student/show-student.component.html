@@ -1,3 +1,103 @@
-<p>
-  show-student works!
-</p>
+<div class="container">
+  <div class="header mat-app-background">
+    <div>
+      <h2>Student Detail</h2>
+    </div>
+
+    <div class="menu">
+      <button mat-icon-button color="accent" matTooltip="Edit" (click)="edit()">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+      <button *ngIf="canClose" mat-icon-button color="accent" matTooltip="delete" (click)="delete()">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+      <button *ngIf="canClose" mat-icon-button color="accent" matTooltip="close" (click)="close()">
+        <mat-icon>close</mat-icon>
+      </button>
+
+    </div>
+  </div>
+
+
+  <div *ngIf="student" class="content">
+
+    <h3>Name</h3>
+    <div class="block" *ngIf="student.prefix">
+      <div class="label">Prefix</div>
+      <div>{{student.prefix | enumAsString:NamePrefix }}</div>
+    </div>
+    <div class="block" *ngIf="student.initial">
+      <div class="label">Initial</div>
+      <div>{{student.initial}}</div>
+    </div>
+    <div class="block">
+      <div class="label">First Name</div>
+      <div>{{student.firstName}}</div>
+    </div>
+    <div class="block" *ngIf="student.middleName">
+      <div class="label">Middle Name</div>
+      <div>{{student.middleName}}</div>
+    </div>
+    <div class="block">
+      <div class="label">Last Name</div>
+      <div>{{student.lastName}}</div>
+    </div>
+    <div class="block" *ngIf="student.nickName">
+      <div class="label">Nick Name</div>
+      <div>{{student.nickName}}</div>
+    </div>
+    <div class="block" *ngIf="student.suffix">
+      <div class="label">Suffix</div>
+      <div>{{student.suffix | enumAsString:NameSuffix }}</div>
+    </div>
+    <br/>
+    <br/>
+
+    <h3>Personal Info</h3>
+    <div class="block">
+      <div class="label">DOB</div>
+      <div>{{student.dob | date:'dd-MMM-yyyy'}}</div>
+    </div>
+    <div class="block">
+      <div class="label">Blood Group</div>
+      <div>{{student.bloodGroup | enumAsString:BloodGroup }}</div>
+    </div>
+    <div class="block">
+      <div class="label">Nationality</div>
+      <div>{{  student.countryCode | enumAsString:CountryCode }}</div>
+    </div>
+    <div class="block">
+      <div class="label">Marital Status</div>
+      <div>{{student.maritalStatus | enumAsString:MaritalStatus }}</div>
+    </div>
+    <div class="block">
+      <div class="label">DOJ</div>
+      <div>{{student.doj | date:'dd-MMM-yyyy'}}</div>
+    </div>
+
+    <br/>
+    <br/>
+
+    <h3>Address</h3>
+    <div *ngFor="let address of student.addresses">
+      <div>{{address.lineOne}}</div>
+      <div *ngIf="address.lineTwo">{{address.lineTwo}}</div>
+      <div *ngIf="address.locality">{{address.locality}}</div>
+      <div>{{address.city}}</div>
+      <div>{{address.state}}</div>
+      <div>{{address.countryCode| enumAsString:CountryCode}}</div>
+    </div>
+
+    <br/>
+    <br/>
+
+    <h3>Phone Numbers</h3>
+    <div class="phone-block" *ngFor="let phone of student.phoneNumbers">
+      <div>{{phone.number}}</div>
+      <div>{{phone.phoneType | enumAsString:PhoneType}}</div>
+      <div><mat-icon color="accent" *ngIf="phone.isPrimary">star</mat-icon></div>
+    </div>
+  </div>
+</div>

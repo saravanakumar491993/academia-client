@@ -28,24 +28,35 @@ import { EditStudentComponent } from './components/student/edit-student/edit-stu
 import { ListStudentComponent } from './components/student/list-student/list-student.component';
 import { NewStudentComponent } from './components/student/new-student/new-student.component';
 import { ShowStudentComponent } from './components/student/show-student/show-student.component';
+import { StudentService } from './service/student.service';
+import { EnumAsStringPipe } from './pipe/enum-as-string.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SettingComponent,
-    NewCourseComponent,
     OptionItemComponent,
-    ListCourseComponent,
+
+    //course
     CourseFormComponent,
-    ShowCourseComponent,
+    NewCourseComponent,
     EditCourseComponent,
-    DeleteDialogComponent,
+    ListCourseComponent,
+    ShowCourseComponent,
+    
+    //student
     StudentFormComponent,
+    NewStudentComponent,
     EditStudentComponent,
     ListStudentComponent,
-    NewStudentComponent,
     ShowStudentComponent,
+    
+    //dialog
+    DeleteDialogComponent,
+    
+    //pipe
+    EnumAsStringPipe,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +75,7 @@ import { ShowStudentComponent } from './components/student/show-student/show-stu
     CourseService,
     SettingService,
     LoaderService,
+    StudentService,
    ],
    entryComponents: [
     DeleteDialogComponent

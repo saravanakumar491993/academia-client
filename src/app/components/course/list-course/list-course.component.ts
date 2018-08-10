@@ -17,7 +17,7 @@ export class ListCourseComponent implements OnInit, AfterViewInit, OnDestroy {
   public canShowList: boolean = true;
   private isTablet: boolean;
   public courses: Course[];
-  public selectedId: number;
+  public selectedCourse: Course;
   public canShowEmpty: boolean;
 
   constructor(
@@ -48,7 +48,7 @@ export class ListCourseComponent implements OnInit, AfterViewInit, OnDestroy {
     this.isTablet = state.matches;
 
     if (this.isTablet) {
-      if (this.selectedId) {
+      if (this.selectedCourse) {
         this.canShowList = false;
       }
       else {
@@ -64,13 +64,13 @@ export class ListCourseComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.isTablet) {
       this.canShowList = true;
     }
-    this.selectedId = null;
+    this.selectedCourse = null;
   }
 
   getCourse(page, pageSize) {
     this.courses = [];
     this.canShowEmpty = false;
-    this.selectedId = null;
+    this.selectedCourse = null;
     this.courseService.list(page, pageSize).subscribe(res => {
       this.loaderService.setLoaderVisibility(true);
       setTimeout(() => {
@@ -82,11 +82,11 @@ export class ListCourseComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  courseSelected(id) {
+  courseSelected(selectedCourse) {
     if (this.isTablet) {
       this.canShowList = false;
     }
-    this.selectedId = id;
+    this.selectedCourse = selectedCourse;
   }
 
   courseDeletedHandler(id) {
@@ -97,14 +97,33 @@ export class ListCourseComponent implements OnInit, AfterViewInit, OnDestroy {
         this.courses.splice(index, 1);
       }
 
-      if(c.id == this.selectedId){
-        this.selectedId = null;
+      if(this.selectedCourse){
+        this.selectedCourse = null;
       }
     }
   }
 
   keyDownHandler(e: KeyboardEvent) {
     if (e.keyCode == 13) {
+    }
+  }
+
+  selectionChange(e) {
+    if(!this.selectedCourse){
+      return;
+    }
+
+    var selectedIndex = this.courses.indexOf(this.selectedCourse);
+    
+    if(e.keyCode == 38) { //up arrow
+      if(selectedIndex > 0) {
+        this.selectedCourse = this.courses[--selectedIndex]
+      }
+    }
+    else if(e.keyCode == 40) { //down arrow
+      if(selectedIndex < this.courses.length - 1) {
+        this.selectedCourse = this.courses[++selectedIndex]
+      }
     }
   }
 }

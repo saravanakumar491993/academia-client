@@ -34,4 +34,49 @@ export abstract class Person implements IAuditable {
     phoneNumbers: PhoneNumber[];
     addresses: ContactAddress[];
 
+    public GetDisplayCountry() {
+        let country: string;
+        switch (this.countryCode) {
+            case CountryCode.IND:
+            default:
+                country = "India";
+                break;
+        }
+        return country;
+    }
+
+    public GetDisplayPrefix() {
+        return NamePrefix[this.prefix];
+    }
+
+    public GetDisplaySuffix() {
+        return NameSuffix[this.suffix]
+    }
+
+    public GetDisplayGender() {
+        let gender: string;
+        switch (this.gender) {
+            case Gender.M:
+                gender = "Male"
+                break
+            case Gender.F:
+                gender = "Female"
+                break
+            case Gender.O:
+            default:
+                gender = "Others"
+                break
+        }
+        return gender
+    }
+
+    public GetDisplayBloodGroup() {
+        var arr = BloodGroup[this.bloodGroup].split('_')
+        let sign: string;
+        if (arr[1] == "Positive")
+            sign = "+ve"
+        else
+            sign = "-ve"
+        return arr[0] + " " + sign
+    }
 }
